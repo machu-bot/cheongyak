@@ -1,6 +1,6 @@
 {
   "source": "sh",
-  "fetchedAt": "2026-06-17T02:47:33.780Z",
+  "fetchedAt": "2026-06-17T02:57:29.539Z",
   "count": 10,
   "items": [
     {
@@ -71,7 +71,7 @@
       "deadlineAt": null,
       "status": "open",
       "statusText": "공고중",
-      "views": 1432
+      "views": 1440
     },
     {
       "id": "sh-305672",
@@ -85,7 +85,7 @@
       "deadlineAt": null,
       "status": "open",
       "statusText": "공고중",
-      "views": 426
+      "views": 427
     },
     {
       "id": "sh-305224",
@@ -99,7 +99,7 @@
       "deadlineAt": null,
       "status": "open",
       "statusText": "공고중",
-      "views": 3721
+      "views": 3733
     },
     {
       "id": "sh-305631",
@@ -127,7 +127,7 @@
       "deadlineAt": null,
       "status": "open",
       "statusText": "공고중",
-      "views": 706
+      "views": 708
     },
     {
       "id": "sh-305633",
@@ -141,7 +141,7 @@
       "deadlineAt": null,
       "status": "open",
       "statusText": "공고중",
-      "views": 1632
+      "views": 1634
     }
   ]
 }
