@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-06-17T02:47:33.780Z",
+  "fetchedAt": "2026-06-17T02:57:29.539Z",
   "count": 60,
   "items": [
     {
@@ -14,7 +14,7 @@
       "deadlineAt": "2026-06-26",
       "status": "open",
       "statusText": "공고중",
-      "views": 1070
+      "views": 1129
     },
     {
       "id": "lh-2015122300020159",
@@ -28,7 +28,7 @@
       "deadlineAt": "2026-07-01",
       "status": "open",
       "statusText": "공고중",
-      "views": 801
+      "views": 819
     },
     {
       "id": "lh-2015122300020155",
@@ -42,7 +42,7 @@
       "deadlineAt": "2026-07-01",
       "status": "open",
       "statusText": "공고중",
-      "views": 2213
+      "views": 2236
     },
     {
       "id": "lh-2015122300020154",
@@ -56,7 +56,7 @@
       "deadlineAt": "2026-07-01",
       "status": "open",
       "statusText": "공고중",
-      "views": 3072
+      "views": 3095
     },
     {
       "id": "lh-2015122300020126",
@@ -70,7 +70,7 @@
       "deadlineAt": "2026-07-02",
       "status": "open",
       "statusText": "공고중",
-      "views": 8981
+      "views": 9086
     },
     {
       "id": "lh-2015122300020139",
@@ -84,7 +84,7 @@
       "deadlineAt": "2026-06-30",
       "status": "open",
       "statusText": "공고중",
-      "views": 6136
+      "views": 6182
     },
     {
       "id": "lh-2015122300020147",
@@ -98,7 +98,7 @@
       "deadlineAt": "2026-06-26",
       "status": "open",
       "statusText": "공고중",
-      "views": 618
+      "views": 619
     },
     {
       "id": "lh-2015122300020081",
@@ -112,7 +112,7 @@
       "deadlineAt": "2026-07-03",
       "status": "open",
       "statusText": "공고중",
-      "views": 1787
+      "views": 1792
     },
     {
       "id": "lh-2015122300020144",
@@ -126,7 +126,7 @@
       "deadlineAt": "2026-06-25",
       "status": "open",
       "statusText": "공고중",
-      "views": 3091
+      "views": 3101
     },
     {
       "id": "lh-2015122300020149",
@@ -140,7 +140,7 @@
       "deadlineAt": "2026-06-26",
       "status": "open",
       "statusText": "공고중",
-      "views": 480
+      "views": 482
     },
     {
       "id": "lh-2015122300020148",
@@ -154,7 +154,7 @@
       "deadlineAt": "2026-06-26",
       "status": "open",
       "statusText": "공고중",
-      "views": 1160
+      "views": 1164
     },
     {
       "id": "lh-2015122300020131",
@@ -168,7 +168,7 @@
       "deadlineAt": "2026-07-01",
       "status": "open",
       "statusText": "공고중",
-      "views": 1539
+      "views": 1542
     },
     {
       "id": "lh-2015122300020134",
@@ -182,7 +182,7 @@
       "deadlineAt": "2026-07-08",
       "status": "open",
       "statusText": "공고중",
-      "views": 607
+      "views": 608
     },
     {
       "id": "lh-2015122300020136",
@@ -196,7 +196,7 @@
       "deadlineAt": "2026-06-25",
       "status": "open",
       "statusText": "공고중",
-      "views": 1749
+      "views": 1753
     },
     {
       "id": "lh-2015122300020135",
@@ -210,7 +210,7 @@
       "deadlineAt": "2026-07-08",
       "status": "open",
       "statusText": "공고중",
-      "views": 1984
+      "views": 1990
     },
     {
       "id": "lh-2015122300020132",
@@ -224,7 +224,7 @@
       "deadlineAt": "2026-07-31",
       "status": "open",
       "statusText": "공고중",
-      "views": 1261
+      "views": 1265
     },
     {
       "id": "lh-2015122300020095",
@@ -238,7 +238,7 @@
       "deadlineAt": "2026-07-02",
       "status": "open",
       "statusText": "공고중",
-      "views": 578
+      "views": 584
     },
     {
       "id": "lh-2015122300020093",
@@ -252,7 +252,7 @@
       "deadlineAt": "2026-07-01",
       "status": "open",
       "statusText": "공고중",
-      "views": 1293
+      "views": 1296
     },
     {
       "id": "lh-2015122300020143",
@@ -266,7 +266,7 @@
       "deadlineAt": "2026-07-03",
       "status": "open",
       "statusText": "공고중",
-      "views": 11444
+      "views": 11497
     },
     {
       "id": "lh-2015122300020088",
@@ -280,7 +280,7 @@
       "deadlineAt": "2026-06-26",
       "status": "open",
       "statusText": "공고중",
-      "views": 974
+      "views": 978
     },
     {
       "id": "lh-2015122300020089",
@@ -294,7 +294,7 @@
       "deadlineAt": "2026-06-30",
       "status": "open",
       "statusText": "공고중",
-      "views": 1152
+      "views": 1161
     },
     {
       "id": "lh-2015122300020077",
@@ -308,7 +308,7 @@
       "deadlineAt": "2026-06-30",
       "status": "fixed",
       "statusText": "정정공고중",
-      "views": 1282
+      "views": 1290
     },
     {
       "id": "lh-2015122300020117",
@@ -322,7 +322,7 @@
       "deadlineAt": "2026-07-02",
       "status": "open",
       "statusText": "공고중",
-      "views": 1181
+      "views": 1182
     },
     {
       "id": "lh-2015122300020140",
@@ -336,7 +336,7 @@
       "deadlineAt": "2026-06-25",
       "status": "open",
       "statusText": "공고중",
-      "views": 928
+      "views": 935
     },
     {
       "id": "lh-2015122300020138",
@@ -350,7 +350,7 @@
       "deadlineAt": "2026-06-30",
       "status": "open",
       "statusText": "공고중",
-      "views": 630
+      "views": 632
     },
     {
       "id": "lh-2015122300020073",
@@ -364,7 +364,7 @@
       "deadlineAt": "2026-07-01",
       "status": "open",
       "statusText": "공고중",
-      "views": 1122
+      "views": 1124
     },
     {
       "id": "lh-2015122300020128",
@@ -378,7 +378,7 @@
       "deadlineAt": "2026-07-01",
       "status": "fixed",
       "statusText": "정정공고중",
-      "views": 326
+      "views": 327
     },
     {
       "id": "lh-2015122300020129",
@@ -392,7 +392,7 @@
       "deadlineAt": "2026-07-01",
       "status": "fixed",
       "statusText": "정정공고중",
-      "views": 2029
+      "views": 2032
     },
     {
       "id": "lh-2015122300020121",
@@ -406,7 +406,7 @@
       "deadlineAt": "2026-07-01",
       "status": "open",
       "statusText": "공고중",
-      "views": 711
+      "views": 713
     },
     {
       "id": "lh-2015122300020120",
@@ -420,7 +420,7 @@
       "deadlineAt": "2026-07-01",
       "status": "open",
       "statusText": "공고중",
-      "views": 551
+      "views": 554
     },
     {
       "id": "lh-2015122300020112",
@@ -434,7 +434,7 @@
       "deadlineAt": "2026-06-30",
       "status": "open",
       "statusText": "공고중",
-      "views": 1416
+      "views": 1421
     },
     {
       "id": "lh-2015122300020119",
@@ -448,7 +448,7 @@
       "deadlineAt": "2026-07-01",
       "status": "open",
       "statusText": "공고중",
-      "views": 545
+      "views": 548
     },
     {
       "id": "lh-2015122300020124",
@@ -462,7 +462,7 @@
       "deadlineAt": "2026-06-30",
       "status": "open",
       "statusText": "공고중",
-      "views": 1968
+      "views": 1981
     },
     {
       "id": "lh-2015122300020123",
@@ -476,7 +476,7 @@
       "deadlineAt": "2026-06-30",
       "status": "open",
       "statusText": "공고중",
-      "views": 3508
+      "views": 3524
     },
     {
       "id": "lh-2015122300020061",
@@ -490,7 +490,7 @@
       "deadlineAt": "2026-07-02",
       "status": "open",
       "statusText": "공고중",
-      "views": 3264
+      "views": 3271
     },
     {
       "id": "lh-2015122300020063",
@@ -504,7 +504,7 @@
       "deadlineAt": "2026-07-02",
       "status": "open",
       "statusText": "공고중",
-      "views": 1274
+      "views": 1276
     },
     {
       "id": "lh-2015122300020039",
@@ -518,7 +518,7 @@
       "deadlineAt": "2026-07-06",
       "status": "open",
       "statusText": "공고중",
-      "views": 749
+      "views": 751
     },
     {
       "id": "lh-2015122300020078",
@@ -532,7 +532,7 @@
       "deadlineAt": "2026-07-01",
       "status": "fixed",
       "statusText": "정정공고중",
-      "views": 1101
+      "views": 1102
     },
     {
       "id": "lh-2015122300020099",
@@ -546,7 +546,7 @@
       "deadlineAt": "2026-07-02",
       "status": "open",
       "statusText": "공고중",
-      "views": 1383
+      "views": 1389
     },
     {
       "id": "lh-2015122300020106",
@@ -560,7 +560,7 @@
       "deadlineAt": "2026-07-02",
       "status": "open",
       "statusText": "공고중",
-      "views": 788
+      "views": 792
     },
     {
       "id": "lh-2015122300020115",
@@ -574,7 +574,7 @@
       "deadlineAt": "2026-07-02",
       "status": "open",
       "statusText": "공고중",
-      "views": 3972
+      "views": 3987
     },
     {
       "id": "lh-2015122300020133",
@@ -588,7 +588,7 @@
       "deadlineAt": "2026-07-01",
       "status": "open",
       "statusText": "공고중",
-      "views": 2219
+      "views": 2229
     },
     {
       "id": "lh-2015122300020108",
@@ -602,7 +602,7 @@
       "deadlineAt": "2026-07-01",
       "status": "fixed",
       "statusText": "정정공고중",
-      "views": 7922
+      "views": 7933
     },
     {
       "id": "lh-2015122300020109",
@@ -616,7 +616,7 @@
       "deadlineAt": "2026-07-01",
       "status": "open",
       "statusText": "공고중",
-      "views": 2716
+      "views": 2725
     },
     {
       "id": "lh-2015122300020086",
@@ -630,7 +630,7 @@
       "deadlineAt": "2026-06-24",
       "status": "open",
       "statusText": "공고중",
-      "views": 9160
+      "views": 9171
     },
     {
       "id": "lh-2015122300020100",
@@ -644,7 +644,7 @@
       "deadlineAt": "2026-06-24",
       "status": "open",
       "statusText": "공고중",
-      "views": 3687
+      "views": 3693
     },
     {
       "id": "lh-2015122300020111",
@@ -658,7 +658,7 @@
       "deadlineAt": "2026-06-26",
       "status": "open",
       "statusText": "공고중",
-      "views": 14422
+      "views": 14445
     },
     {
       "id": "lh-2015122300020110",
@@ -672,7 +672,7 @@
       "deadlineAt": "2026-06-25",
       "status": "fixed",
       "statusText": "정정공고중",
-      "views": 5332
+      "views": 5335
     },
     {
       "id": "lh-2015122300020097",
@@ -686,7 +686,7 @@
       "deadlineAt": "2026-06-24",
       "status": "open",
       "statusText": "공고중",
-      "views": 3093
+      "views": 3101
     },
     {
       "id": "lh-2015122300020104",
@@ -700,7 +700,7 @@
       "deadlineAt": "2026-07-03",
       "status": "open",
       "statusText": "공고중",
-      "views": 1773
+      "views": 1777
     },
     {
       "id": "sh-305753",
@@ -770,7 +770,7 @@
       "deadlineAt": null,
       "status": "open",
       "statusText": "공고중",
-      "views": 1432
+      "views": 1440
     },
     {
       "id": "sh-305672",
@@ -784,7 +784,7 @@
       "deadlineAt": null,
       "status": "open",
       "statusText": "공고중",
-      "views": 426
+      "views": 427
     },
     {
       "id": "sh-305224",
@@ -798,7 +798,7 @@
       "deadlineAt": null,
       "status": "open",
       "statusText": "공고중",
-      "views": 3721
+      "views": 3733
     },
     {
       "id": "sh-305631",
@@ -826,7 +826,7 @@
       "deadlineAt": null,
       "status": "open",
       "statusText": "공고중",
-      "views": 706
+      "views": 708
     },
     {
       "id": "sh-305633",
@@ -840,7 +840,7 @@
       "deadlineAt": null,
       "status": "open",
       "statusText": "공고중",
-      "views": 1632
+      "views": 1634
     }
   ]
 }

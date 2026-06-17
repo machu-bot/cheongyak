@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import NavLink from "../components/NavLink.astro";
 
 interface Props {
   title?: string;
@@ -9,9 +10,12 @@ interface Props {
 
 const {
   title = "청약 — SH · LH 공공임대 청약 캘린더",
-  description = "서울주택도시공사(SH)와 한국토지주택공사(LH)의 공공임대 청약 공고를 한 곳에서. 캘린더와 지도로 한눈에.",
+  description = "서울주택도시공사(SH)와 한국토지주택공사(LH)의 공공임대 청고 공고를 한 곳에서. 캘린더와 지도로 한눈에.",
   active = "listings",
 } = Astro.props;
+
+// Astro injects import.meta.env.BASE_URL — works for both dev and build (with `base: '/cheongyak'`)
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 ---
 
 <!doctype html>
@@ -22,18 +26,18 @@ const {
     <meta name="description" content={description} />
     <meta name="theme-color" content="#3182F6" />
     <title>{title}</title>
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href={`${base}/favicon.svg`} />
   </head>
   <body>
     <header class="site-header">
       <div class="container site-header__inner">
-        <a href="/" class="site-logo">
+        <a href={`${base}/`} class="site-logo">
           <span class="site-logo__dot"></span>
           <span>청약</span>
         </a>
         <nav class="site-nav" aria-label="Primary">
-          <a href="/listings" class={active === "listings" ? "active" : ""}>목록</a>
-          <a href="/map" class={active === "map" ? "active" : ""}>지도</a>
+          <NavLink href={`${base}/listings`} active={active === "listings"}>목록</NavLink>
+          <NavLink href={`${base}/map`} active={active === "map"}>지도</NavLink>
         </nav>
       </div>
     </header>
@@ -41,9 +45,5 @@ const {
     <main>
       <slot />
     </main>
-
-    <style is:global>
-      /* additional global styles can go here */
-    </style>
   </body>
 </html>

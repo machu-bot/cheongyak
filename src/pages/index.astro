@@ -2,6 +2,7 @@
 import Base from "../layouts/Base.astro";
 import listings from "../data/listings.json";
 
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 const open = listings.items.filter((i) => i.status === "open").length;
 const regions = new Set(listings.items.map((i) => i.region)).size;
 const fetched = new Date(listings.fetchedAt).toLocaleDateString("ko-KR", {
@@ -17,7 +18,7 @@ const fetched = new Date(listings.fetchedAt).toLocaleDateString("ko-KR", {
 
   <section class="container section">
     <div class="card-grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));">
-      <a class="card" href="/listings">
+      <a class="card" href={`${base}/listings`}>
         <div class="card__top">
           <span class="card__source card__source--lh">LIST</span>
         </div>
@@ -27,7 +28,7 @@ const fetched = new Date(listings.fetchedAt).toLocaleDateString("ko-KR", {
           <dt>업데이트</dt><dd class="num">{fetched}</dd>
         </dl>
       </a>
-      <a class="card" href="/map">
+      <a class="card" href={`${base}/map`}>
         <div class="card__top">
           <span class="card__source card__source--sh">MAP</span>
         </div>
