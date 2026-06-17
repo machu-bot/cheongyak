@@ -1,0 +1,118 @@
+---
+import Base from "../layouts/Base.astro";
+import listings from "../data/listings.json";
+
+// Static generation: load JSON at build time
+const { items, fetchedAt } = listings as {
+  items: Array<{
+    id: string;
+    source: "lh" | "sh";
+    type: string;
+    title: string;
+    url: string;
+    region: string;
+    postedAt: string | null;
+    deadlineAt: string | null;
+    status: "open" | "closed" | "fixed";
+    statusText: string;
+    views: number;
+  }>;
+  fetchedAt: string;
+};
+
+// Sort by deadline (open soonest first); nulls last
+const sorted = [...items].sort((a, b) => {
+  if (a.deadlineAt && b.deadlineAt)
+    return a.deadlineAt.localeCompare(b.deadlineAt);
+  if (a.deadlineAt) return -1;
+  if (b.deadlineAt) return 1;
+  return (b.postedAt || "").localeCompare(a.postedAt || "");
+});
+
+const open = sorted.filter((i) => i.status === "open").length;
+const fixed = sorted.filter((i) => i.status === "fixed").length;
+const total = sorted.length;
+const regions = Array.from(new Set(sorted.map((i) => i.region))).sort();
+const fetchedDate = new Date(fetchedAt).toLocaleString("ko-KR", {
+  year: "numeric", month: "2-digit", day: "2-digit",
+  hour: "2-digit", minute: "2-digit"
+});
+---
+
+<Base title="청약 목록 — SH · LH 공공임대" active="listings">
+  <section class="container hero">
+    <h1>오늘의 <span class="hero__accent">청약</span> 일정</h1>
+    <p>SH · LH 공공임대 청약 공고를 한 곳에서. 매일 자동 업데이트.</p>
+  </section>
+
+  <section class="container section">
+    <div class="section__head">
+      <h2 class="section__title">전체 공고</h2>
+      <span class="section__meta num">{total}건 · {open}개 접수중 · {fixed}개 정정중 · 마지막 업데이트 {fetchedDate}</span>
+    </div>
+
+    <div class="filter-bar" id="filter-bar">
+      <select id="filter-source" aria-label="출처">
+        <option value="">전체 출처</option>
+        <option value="lh">LH (한국토지주택공사)</option>
+        <option value="sh">SH (서울주택도시개발공사)</option>
+      </select>
+      <select id="filter-region" aria-label="지역">
+        <option value="">전체 지역</option>
+        {regions.map((r) => <option value={r}>{r}</option>)}
+      </select>
+      <input id="filter-q" type="search" placeholder="제목 또는 유형으로 검색" aria-label="검색" />
+    </div>
+
+    <div class="card-grid" id="card-grid">
+      {sorted.map((item) => (
+        <a class="card" data-source={item.source} data-region={item.region} data-q={`${item.title} ${item.type}`} href={item.url || "#"} target="_blank" rel="noopener">
+          <div class="card__top">
+            <span class={`card__source card__source--${item.source}`}>
+              {item.source === "lh" ? "LH" : "SH"}
+            </span>
+            <span class={`card__status card__status--${item.status}`}>{item.statusText}</span>
+          </div>
+          <h3 class="card__title">{item.title.replace(/\s*\d+일전\s*$/, "")}</h3>
+          <dl class="card__meta">
+            <dt>유형</dt><dd>{item.type}</dd>
+            <dt>지역</dt><dd>{item.region}</dd>
+            {item.deadlineAt && <><dt>마감</dt><dd class="num">{item.deadlineAt}</dd></>}
+            {item.postedAt && <><dt>게시</dt><dd class="num">{item.postedAt}</dd></>}
+            <dt>조회</dt><dd class="num">{item.views.toLocaleString("ko-KR")}</dd>
+          </dl>
+        </a>
+      ))}
+    </div>
+
+    <div class="empty" id="empty-state" hidden>검색 결과가 없어요.</div>
+  </section>
+
+  <script>
+    // Client-side filter (no framework)
+    const $source = document.getElementById("filter-source") as HTMLSelectElement;
+    const $region = document.getElementById("filter-region") as HTMLSelectElement;
+    const $q = document.getElementById("filter-q") as HTMLInputElement;
+    const $cards = Array.from(document.querySelectorAll<HTMLElement>(".card"));
+    const $empty = document.getElementById("empty-state") as HTMLElement;
+
+    function apply() {
+      const s = $source.value;
+      const r = $region.value;
+      const q = $q.value.trim().toLowerCase();
+      let shown = 0;
+      for (const c of $cards) {
+        const matchSource = !s || c.dataset.source === s;
+        const matchRegion = !r || c.dataset.region === r;
+        const matchQ = !q || (c.dataset.q || "").toLowerCase().includes(q);
+        const visible = matchSource && matchRegion && matchQ;
+        c.style.display = visible ? "" : "none";
+        if (visible) shown++;
+      }
+      $empty.hidden = shown > 0;
+    }
+    $source.addEventListener("change", apply);
+    $region.addEventListener("change", apply);
+    $q.addEventListener("input", apply);
+  </script>
+</Base>

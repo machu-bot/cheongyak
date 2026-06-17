@@ -1,0 +1,20 @@
+{
+  "name": "cheongyak",
+  "type": "module",
+  "version": "0.0.1",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "fetch-lh": "node scripts/fetch-lh.mjs",
+    "fetch-sh": "node scripts/fetch-sh.mjs"
+  },
+  "dependencies": {
+    "astro": "^6.4.7",
+    "fuse.js": "^7.4.2"
+  }
+}

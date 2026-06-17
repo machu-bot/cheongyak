@@ -1,0 +1,42 @@
+---
+import Base from "../layouts/Base.astro";
+import listings from "../data/listings.json";
+
+const open = listings.items.filter((i) => i.status === "open").length;
+const regions = new Set(listings.items.map((i) => i.region)).size;
+const fetched = new Date(listings.fetchedAt).toLocaleDateString("ko-KR", {
+  month: "long", day: "numeric", hour: "2-digit", minute: "2-digit"
+});
+---
+
+<Base title="청약 — SH · LH 공공임대 청약 캘린더" active="listings">
+  <section class="container hero">
+    <h1>오늘의 <span class="hero__accent">청약</span> 일정</h1>
+    <p>SH · LH 공공임대 청약 공고를 한 곳에서.<br />캘린더와 지도로 한눈에.</p>
+  </section>
+
+  <section class="container section">
+    <div class="card-grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));">
+      <a class="card" href="/listings">
+        <div class="card__top">
+          <span class="card__source card__source--lh">LIST</span>
+        </div>
+        <h3 class="card__title">전체 {listings.count}건 · 접수중 {open}건</h3>
+        <dl class="card__meta">
+          <dt>지역</dt><dd class="num">{regions}개 시·도</dd>
+          <dt>업데이트</dt><dd class="num">{fetched}</dd>
+        </dl>
+      </a>
+      <a class="card" href="/map">
+        <div class="card__top">
+          <span class="card__source card__source--sh">MAP</span>
+        </div>
+        <h3 class="card__title">지도에서 보기</h3>
+        <dl class="card__meta">
+          <dt>형태</dt><dd>리스트 + 마커</dd>
+          <dt>타일</dt><dd>CARTO Dark</dd>
+        </dl>
+      </a>
+    </div>
+  </section>
+</Base>

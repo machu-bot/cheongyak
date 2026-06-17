@@ -1,0 +1,172 @@
+---
+import Base from "../layouts/Base.astro";
+import listings from "../data/listings.json";
+
+// Approximate coordinates for the regions in our data (region → lat/lng).
+// Many listings are multi-region; we map common LH/SH regions to city centers.
+// This is a deliberate approximation — exact addresses are not in the listings list page.
+const REGION_COORDS: Record<string, [number, number]> = {
+  "서울": [37.5665, 126.978],
+  "서울특별시": [37.5665, 126.978],
+  "부산광역시": [35.1796, 129.0756],
+  "대구광역시": [35.8714, 128.6014],
+  "인천광역시": [37.4563, 126.7052],
+  "광주광역시": [35.1595, 126.8526],
+  "대전광역시": [36.3504, 127.3845],
+  "울산광역시": [35.5384, 129.3114],
+  "세종특별자치시": [36.4801, 127.289],
+  "경기도": [37.4138, 127.5183],
+  "강원특별자치도": [37.8228, 128.1555],
+  "충청북도": [36.6357, 127.4917],
+  "충청남도": [36.5184, 126.8],
+  "전북특별자치도": [35.7175, 127.153],
+  "전라남도": [34.8679, 126.991],
+  "경상북도": [36.4919, 128.8889],
+  "경상남도": [35.4606, 128.2132],
+  "제주특별자치도": [33.4996, 126.5312],
+  "전국": [36.5, 127.8],
+  "대전광역시 외": [36.5, 127.5],
+  "광주광역시 외": [35.5, 127.0],
+};
+
+// Markers: add small per-type jitter so multiple listings in same region don't overlap
+function jitter(seed: string): number {
+  let h = 0;
+  for (let i = 0; i < seed.length; i++) h = (h * 31 + seed.charCodeAt(i)) >>> 0;
+  return ((h % 100) - 50) / 5000; // ±0.01 deg
+}
+
+const markers = listings.items
+  .map((item) => {
+    const base = REGION_COORDS[item.region] || REGION_COORDS["전국"];
+    const jx = jitter(item.id + "x");
+    const jy = jitter(item.id + "y");
+    return { ...item, lat: base[0] + jy, lng: base[1] + jx };
+  });
+---
+
+<Base title="청약 지도 — SH · LH 공공임대" active="map">
+  <section class="container hero" style="padding: var(--s-8) 0 var(--s-5);">
+    <h1>청약 <span class="hero__accent">지도</span></h1>
+    <p>{markers.length}건의 공고를 지도로 봅니다. 마커를 클릭하면 공고로 이동해요.</p>
+  </section>
+
+  <section class="container" style="padding-bottom: var(--s-8);">
+    <div class="map-wrap">
+      <aside class="map-list" id="map-list">
+        {markers.slice(0, 30).map((m) => (
+          <a class="map-list__item" data-id={m.id} href={m.url || "#"} target="_blank" rel="noopener">
+            <h4 class="map-list__title">
+              <span class={`card__source card__source--${m.source}`} style="margin-right:6px;font-size:10px;padding:2px 6px;">
+                {m.source === "lh" ? "LH" : "SH"}
+              </span>
+              {m.title.replace(/\s*\d+일전\s*$/, "").slice(0, 50)}
+              {m.title.length > 50 && "…"}
+            </h4>
+            <p class="map-list__sub">{m.region} · {m.deadlineAt || m.postedAt}</p>
+          </a>
+        ))}
+      </aside>
+      <div id="map" role="application" aria-label="청약 공고 지도"></div>
+    </div>
+  </section>
+
+  <!-- Leaflet CSS + JS (CDN, no API key) -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    crossorigin="anonymous" />
+  <script is:inline src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    crossorigin="anonymous"></script>
+
+  <script is:inline define:vars={{ markers }}>
+    (function () {
+      const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      const tileUrl = isDark
+        ? "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
+        : "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png";
+
+      const map = L.map("map", { zoomControl: true }).setView([36.5, 127.8], 7);
+      L.tileLayer(tileUrl, {
+        maxZoom: 19,
+        attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> · © <a href="https://carto.com/attributions">CARTO</a>'
+      }).addTo(map);
+
+      // Custom Toss-style dot marker
+      function makeIcon(color, isAccent) {
+        return L.divIcon({
+          className: "toss-marker",
+          html: `<div style="
+            width:14px;height:14px;border-radius:50%;
+            background:${color};
+            border:2.5px solid #fff;
+            box-shadow:0 2px 6px rgba(0,0,0,0.18);
+            ${isAccent ? "transform:scale(1.4);" : ""}
+          "></div>`,
+          iconSize: [14, 14],
+          iconAnchor: [7, 7],
+        });
+      }
+
+      const lhIcon = makeIcon("#3182F6", false);
+      const shIcon = makeIcon("#04C09E", false);
+
+      const allMarkers = [];
+      markers.forEach((m) => {
+        const marker = L.marker([m.lat, m.lng], {
+          icon: m.source === "lh" ? lhIcon : shIcon,
+        }).addTo(map);
+        const safeTitle = (m.title || "").replace(/</g, "&lt;");
+        const statusHtml = m.status === "fixed"
+          ? '<span style="color:#FF8A00;font-weight:600;">정정중</span>'
+          : m.status === "closed"
+            ? '<span style="color:#8B95A1;">마감</span>'
+            : '<span style="color:#3182F6;font-weight:600;">접수중</span>';
+        const html = `
+          <div style="min-width:200px;max-width:240px;">
+            <div style="font-size:11px;color:#8B95A1;font-weight:600;letter-spacing:0.04em;margin-bottom:4px;">
+              ${m.source === "lh" ? "LH" : "SH"} · ${m.region}
+            </div>
+            <div style="font-size:13px;font-weight:600;line-height:1.4;color:#191F28;margin-bottom:6px;">
+              ${safeTitle.replace(/\s*\d+일전\s*$/, "")}
+            </div>
+            <div style="font-size:12px;color:#6B7684;margin-bottom:8px;">
+              ${m.type} · ${statusHtml}
+            </div>
+            ${m.deadlineAt ? `<div style="font-size:11px;color:#8B95A1;margin-bottom:6px;">마감 ${m.deadlineAt}</div>` : ""}
+            ${m.url ? `<a href="${m.url}" target="_blank" rel="noopener" style="display:inline-block;font-size:12px;font-weight:600;color:#3182F6;text-decoration:none;padding:4px 10px;border:1px solid #3182F6;border-radius:6px;">공고 보기 →</a>` : ""}
+          </div>
+        `;
+        marker.bindPopup(html, { closeButton: true });
+        marker._data = m;
+        allMarkers.push(marker);
+      });
+
+      // Side list → map: click on list item flies to marker
+      document.querySelectorAll(".map-list__item").forEach((el) => {
+        el.addEventListener("click", (e) => {
+          e.preventDefault();
+          const id = el.getAttribute("data-id");
+          const m = allMarkers.find((mk) => mk._data.id === id);
+          if (m) {
+            map.flyTo(m.getLatLng(), 11, { duration: 0.6 });
+            m.openPopup();
+            document.querySelectorAll(".map-list__item").forEach((x) => x.classList.remove("active"));
+            el.classList.add("active");
+          }
+        });
+      });
+
+      // Marker → side list: highlight on popup open
+      allMarkers.forEach((m) => {
+        m.on("popupopen", () => {
+          const id = m._data.id;
+          document.querySelectorAll(".map-list__item").forEach((x) => x.classList.remove("active"));
+          const target = document.querySelector(`.map-list__item[data-id="${id}"]`);
+          if (target) {
+            target.classList.add("active");
+            target.scrollIntoView({ block: "nearest", behavior: "smooth" });
+          }
+        });
+      });
+    })();
+  </script>
+</Base>
