@@ -11,10 +11,15 @@
     "preview": "astro preview",
     "astro": "astro",
     "fetch-lh": "node scripts/fetch-lh.mjs",
-    "fetch-sh": "node scripts/fetch-sh.mjs"
+    "fetch-sh": "node scripts/fetch-sh.mjs",
+    "fetch-all": "node scripts/fetch-lh.mjs && node scripts/fetch-sh.mjs && node scripts/build-listings.mjs",
+    "deploy": "npm run fetch-all && astro build && gh-pages -d dist --dotfiles --message 'Deploy cheongyak'"
   },
   "dependencies": {
     "astro": "^6.4.7",
     "fuse.js": "^7.4.2"
+  },
+  "devDependencies": {
+    "gh-pages": "^6.3.0"
   }
 }
